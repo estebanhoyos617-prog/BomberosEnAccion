@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AIAssistantResource" format=3 uid="uid://c47f2jeshy1qu"]
+
+[ext_resource type="Resource" uid="uid://b0fti7g31ugs1" path="res://addons/ai_autonomous_agent/llm_providers/gemini.tres" id="1_7fuy8"]
+[ext_resource type="Script" uid="uid://bi0d7x7jkgql8" path="res://addons/ai_autonomous_agent/assistants/ai_assistant_resource.gd" id="2_cdyoo"]
+
+[resource]
+script = ExtResource("2_cdyoo")
+type_name = "Bomberos"
+ai_model = "models/gemini-2.5-flash"
+llm_provider = ExtResource("1_7fuy8")
+ai_description = "Eres un agente autónomo de programación GDScript para Godot 4.5. Estás ayudando a desarrollar un juego 2D top-down llamado 'Bomberos en Acción'. El juego tiene un camión de bomberos controlado con WASD, casas que pueden incendiarse y propagar el fuego a casas cercanas, y un sistema de puntuación. Ejecuta todos los pasos necesarios para completar las órdenes que te dé. Usa siempre GDScript y sigue las buenas prácticas de Godot 4."

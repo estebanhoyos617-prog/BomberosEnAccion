@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bvptwus7vqjn2"]
+
+[ext_resource type="Texture2D" uid="uid://bq70jlke43mvi" path="res://Images/camion_64x128.png" id="1_gl8cg"]
+[ext_resource type="Script" uid="uid://be1byc8k6oprb" path="res://Scripts/camion.gd" id="1_jk3q3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl8cg"]
+size = Vector2(41, 94.75)
+
+[node name="Camion" type="CharacterBody2D" unique_id=1925007731]
+script = ExtResource("1_jk3q3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=471150561]
+position = Vector2(220, 138)
+scale = Vector2(0.71875, 0.78125)
+texture = ExtResource("1_gl8cg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474375191]
+position = Vector2(219, 135.625)
+shape = SubResource("RectangleShape2D_gl8cg")
