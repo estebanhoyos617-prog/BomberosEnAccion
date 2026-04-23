@@ -1,78 +1,57 @@
-extends StaticBody2D
+extends Area2D
 
-class_name Casa
+enum Estado { NORMAL, EN_LLAMAS, DESTRUIDA }
 
-enum State { NORMAL, ON_FIRE, BURNED }
+@export var textura_normal: Texture2D
+@export var textura_fuego: Texture2D  
+@export var textura_destruida: Texture2D
+@export var velocidad_fuego: float = 10.0
+@export var radio_propagacion: float = 120.0
 
-signal house_on_fire(house_node)
-signal house_extinguished(house_node)
-signal house_burned_down(house_node)
+var estado: Estado = Estado.NORMAL
+var intensidad: float = 0.0
 
-@export var initial_state: State = State.NORMAL
-@export var fire_spread_delay_min: float = 5.0 # Tiempo mínimo antes de que el fuego se propague
-@export var fire_spread_delay_max: float = 15.0 # Tiempo máximo antes de que el fuego se propague
-@export var fire_damage_time: float = 10.0 # Tiempo que tarda en quemarse por completo
+@onready var sprite: Sprite2D = $Sprite2D
 
-var current_state: State
-var time_on_fire: float = 0.0
-var fire_spread_timer: Timer
-
-# Referencias a nodos visuales para los diferentes estados
-@onready var normal_sprite: Sprite2D = $NormalSprite
-@onready var fire_sprite: Sprite2D = $FireSprite
-@onready var burned_sprite: Sprite2D = $BurnedSprite
+signal casa_destruida(posicion)
+signal estado_cambiado(nuevo_estado)
 
 func _ready() -> void:
-	set_state(initial_state)
-
-	fire_spread_timer = Timer.new()
-	add_child(fire_spread_timer)
-	fire_spread_timer.one_shot = true
-	fire_spread_timer.timeout.connect(_on_fire_spread_timer_timeout)
+	_actualizar_textura()
 
 func _process(delta: float) -> void:
-	if current_state == State.ON_FIRE:
-		time_on_fire += delta
-		if time_on_fire >= fire_damage_time:
-			set_state(State.BURNED)
+	if estado == Estado.EN_LLAMAS:
+		intensidad += velocidad_fuego * delta
+		if intensidad >= 100.0:
+			cambiar_estado(Estado.DESTRUIDA)
 
-func set_state(new_state: State) -> void:
-	current_state = new_state
+func iniciar_fuego() -> void:
+	if estado == Estado.NORMAL:
+		cambiar_estado(Estado.EN_LLAMAS)
+		intensidad = 0.0
 
-	match current_state:
-		State.NORMAL:
-			normal_sprite.visible = true
-			fire_sprite.visible = false
-			burned_sprite.visible = false
-			fire_spread_timer.stop()
-			time_on_fire = 0.0
-		State.ON_FIRE:
-			normal_sprite.visible = false
-			fire_sprite.visible = true
-			burned_sprite.visible = false
-			# Iniciar temporizador para propagación del fuego
-			fire_spread_timer.wait_time = randf_range(fire_spread_delay_min, fire_spread_delay_max)
-			fire_spread_timer.start()
-			house_on_fire.emit(self)
-		State.BURNED:
-			normal_sprite.visible = false
-			fire_sprite.visible = false
-			burned_sprite.visible = true
-			fire_spread_timer.stop()
-			house_burned_down.emit(self)
+func apagar_fuego(cantidad: float) -> void:
+	if estado == Estado.EN_LLAMAS:
+		intensidad -= cantidad
+		if intensidad <= 0.0:
+			intensidad = 0.0
+			cambiar_estado(Estado.NORMAL)
 
-func ignite() -> void:
-	if current_state == State.NORMAL:
-		set_state(State.ON_FIRE)
+func cambiar_estado(nuevo_estado: Estado) -> void:
+	estado = nuevo_estado
+	_actualizar_textura()
+	emit_signal("estado_cambiado", nuevo_estado)
+	if nuevo_estado == Estado.DESTRUIDA:
+		emit_signal("casa_destruida", global_position)
 
-func extinguish() -> void:
-	if current_state == State.ON_FIRE:
-		set_state(State.NORMAL)
-		house_extinguished.emit(self)
+func _actualizar_textura() -> void:
+	match estado:
+		Estado.NORMAL:
+			sprite.texture = textura_normal
+		Estado.EN_LLAMAS:
+			sprite.texture = textura_fuego
+		Estado.DESTRUIDA:
+			sprite.texture = textura_destruida
 
-func _on_fire_spread_timer_timeout() -> void:
-	# Este método será llamado cuando el temporizador de propagación termine.
-	# La lógica de encontrar casas cercanas y propagar el fuego se implementará
-	# en un script de nivel superior (ej. GameManager o el propio World).
-	# Por ahora, solo emitimos una señal para indicar que una casa está lista para propagar.
-	pass # La lógica de propagación real irá en el GameManager o World
+func get_intensidad() -> float:
+	return intensidad

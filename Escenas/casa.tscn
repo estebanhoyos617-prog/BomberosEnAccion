@@ -1,3 +1,19 @@
 [gd_scene format=3 uid="uid://lts43j6n67so"]
 
-[node name="Casa" type="Node2D" unique_id=1268467136]
+[ext_resource type="Script" uid="uid://ce1mfabmf6lvq" path="res://Scripts/casa.gd" id="1_rixwx"]
+[ext_resource type="Texture2D" uid="uid://c3c466oeh8kka" path="res://Images/casa_normal_64x64.png" id="2_nvjj1"]
+[ext_resource type="Texture2D" uid="uid://cdh3qrtdjdev7" path="res://Images/casa_fuego_64x64.png" id="3_gg1cq"]
+[ext_resource type="Texture2D" uid="uid://b5laou87lfueb" path="res://Images/casa_destruida_64x64.png" id="4_jm1j0"]
+
+[node name="Casa" type="Area2D" unique_id=1593599540]
+position = Vector2(47, 38)
+script = ExtResource("1_rixwx")
+textura_normal = ExtResource("2_nvjj1")
+textura_fuego = ExtResource("3_gg1cq")
+textura_destruida = ExtResource("4_jm1j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1081042092]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611779700]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2024908121]
