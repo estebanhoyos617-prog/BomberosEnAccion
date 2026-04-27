@@ -17,7 +17,8 @@ var timer_spawn: float = 0.0
 @onready var jugador = $Camion
 
 func _ready() -> void:
-	# Registrar todas las casas de la escena
+	print("GameManager iniciado")
+	print("Casas encontradas: ", casas.size())
 	_registrar_casas()
 
 func _process(delta: float) -> void:
@@ -33,15 +34,18 @@ func _process(delta: float) -> void:
 		tiempo_spawn_fuego = max(2.0, tiempo_spawn_fuego - 0.2)
 
 func _registrar_casas() -> void:
-	# Busca todos los nodos Casa en la escena
 	for nodo in get_tree().get_nodes_in_group("casas"):
 		casas.append(nodo)
-		# Conectar señal de casa destruida
 		nodo.casa_destruida.connect(_on_casa_destruida)
+		print("Casa registrada: ", nodo.name)
+	
 
 func _iniciar_fuego_aleatorio() -> void:
+	print("Intentando iniciar fuego...")
 	if casas.is_empty():
+		print("ERROR: No hay casas registradas!")
 		return
+	# ... resto del código
 	
 	# Filtrar solo casas normales (sin fuego)
 	var casas_normales: Array = []
