@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://drml8uupolx33" path="res://Scripts/game_manager.gd" id="1_6lbni"]
 [ext_resource type="PackedScene" uid="uid://bbq3s36g7unmk" path="res://Escenas/mapa.tscn" id="2_0kh0y"]
 [ext_resource type="PackedScene" uid="uid://bvptwus7vqjn2" path="res://Escenas/camion.tscn" id="2_vt1rs"]
+[ext_resource type="PackedScene" uid="uid://lts43j6n67so" path="res://Escenas/casa.tscn" id="4_7xwpo"]
 
 [node name="Main" type="Node2D" unique_id=116071391]
 
@@ -13,3 +14,10 @@ script = ExtResource("1_6lbni")
 
 [node name="Camion" parent="." unique_id=1925007731 instance=ExtResource("2_vt1rs")]
 position = Vector2(23, -32)
+
+[node name="Casas" type="Node" parent="." unique_id=1269907076]
+
+[node name="Casa" parent="Casas" unique_id=1593599540 instance=ExtResource("4_7xwpo")]
+
+[node name="Casa2" parent="Casas" unique_id=1433984506 instance=ExtResource("4_7xwpo")]
+position = Vector2(485, 39)

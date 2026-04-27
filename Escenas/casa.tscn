@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rixwx"]
 size = Vector2(61, 59)
 
-[node name="Casa" type="Area2D" unique_id=1593599540]
+[node name="Casa" type="Area2D" unique_id=1593599540 groups=["casas"]]
 position = Vector2(47, 38)
 script = ExtResource("1_rixwx")
 textura_normal = ExtResource("2_nvjj1")

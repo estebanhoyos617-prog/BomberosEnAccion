@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gl8cg"]
 size = Vector2(36, 86)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk3q3"]
+radius = 67.18631
+
 [node name="Camion" type="CharacterBody2D" unique_id=1925007731]
 script = ExtResource("1_jk3q3")
 
@@ -17,3 +20,12 @@ texture = ExtResource("1_gl8cg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474375191]
 position = Vector2(222, 138)
 shape = SubResource("RectangleShape2D_gl8cg")
+
+[node name="Detector" type="Area2D" parent="." unique_id=870909452]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" unique_id=46745531]
+position = Vector2(222, 135)
+shape = SubResource("CircleShape2D_jk3q3")
+
+[connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]
+[connection signal="area_exited" from="Detector" to="." method="_on_detector_area_exited"]
