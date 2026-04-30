@@ -14,17 +14,19 @@ script = ExtResource("1_jk3q3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=471150561]
 position = Vector2(220, 138)
-scale = Vector2(0.71875, 0.78125)
+scale = Vector2(0.47033423, 0.4971592)
 texture = ExtResource("1_gl8cg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474375191]
 position = Vector2(222, 138)
+scale = Vector2(0.65437806, 0.6363638)
 shape = SubResource("RectangleShape2D_gl8cg")
 
 [node name="Detector" type="Area2D" parent="." unique_id=870909452]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" unique_id=46745531]
 position = Vector2(222, 135)
+scale = Vector2(0.65437806, 0.6363638)
 shape = SubResource("CircleShape2D_jk3q3")
 
 [connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]

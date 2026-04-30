@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bbq3s36g7unmk" path="res://Escenas/mapa.tscn" id="2_0kh0y"]
 [ext_resource type="PackedScene" uid="uid://bvptwus7vqjn2" path="res://Escenas/camion.tscn" id="2_vt1rs"]
 [ext_resource type="PackedScene" uid="uid://lts43j6n67so" path="res://Escenas/casa.tscn" id="4_7xwpo"]
+[ext_resource type="PackedScene" uid="uid://bfr0u4pv57e22" path="res://Escenas/HUD.tscn" id="5_2ia52"]
 
 [node name="Main" type="Node2D" unique_id=116071391]
 
@@ -23,11 +24,19 @@ position = Vector2(554, 526)
 [node name="Casa2" parent="Casas" unique_id=949048153 instance=ExtResource("4_7xwpo")]
 position = Vector2(690, 526)
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1238929588]
+[node name="Casa3" parent="Casas" unique_id=152470913 instance=ExtResource("4_7xwpo")]
+position = Vector2(963.99994, 435)
 
-[node name="BarraVida" type="ProgressBar" parent="HUD" unique_id=1758112729]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 320.0
-offset_bottom = 50.0
-value = 100.0
+[node name="Casa4" parent="Casas" unique_id=1526150753 instance=ExtResource("4_7xwpo")]
+position = Vector2(1049, 530)
+
+[node name="Casa5" parent="Casas" unique_id=31923226 instance=ExtResource("4_7xwpo")]
+position = Vector2(376.99997, 480)
+
+[node name="Casa6" parent="Casas" unique_id=165554705 instance=ExtResource("4_7xwpo")]
+position = Vector2(1078, 320)
+
+[node name="Casa7" parent="Casas" unique_id=1131788309 instance=ExtResource("4_7xwpo")]
+position = Vector2(404.99997, 276)
+
+[node name="HUD" parent="." unique_id=581557207 instance=ExtResource("5_2ia52")]

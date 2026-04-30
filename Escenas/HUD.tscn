@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bfr0u4pv57e22"]
+
+[ext_resource type="Script" uid="uid://bsy6rvmaeo7ab" path="res://Scripts/hud.gd" id="1_j171n"]
+
+[node name="HUD" type="CanvasLayer" unique_id=581557207]
+script = ExtResource("1_j171n")
+
+[node name="PanelSuperior" type="PanelContainer" parent="." unique_id=1519649709]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -223.0
+offset_bottom = 56.0
+grow_horizontal = 2
+scale = Vector2(1.24, 1)
+
+[node name="HBox" type="HBoxContainer" parent="PanelSuperior" unique_id=1436170870]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelSuperior/HBox" unique_id=2050467406]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelTiempo" type="Label" parent="PanelSuperior/HBox" unique_id=1933738443]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⏱ 2:00"
+
+[node name="VBoxCaos" type="VBoxContainer" parent="PanelSuperior/HBox" unique_id=1115631065]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="LabelCaos" type="Label" parent="PanelSuperior/HBox/VBoxCaos" unique_id=1674611718]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "🟢 Calma"
+
+[node name="BarraCaos" type="ProgressBar" parent="PanelSuperior/HBox/VBoxCaos" unique_id=964762390]
+layout_mode = 2
+show_percentage = false
+
+[node name="Spacer2" type="Control" parent="PanelSuperior/HBox" unique_id=1422813355]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelPuntaje" type="Label" parent="PanelSuperior/HBox" unique_id=799021831]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⭐ 0"
+
+[node name="Notificacion" type="PanelContainer" parent="." unique_id=1437247230]
+visible = false
+offset_left = 465.0
+offset_top = 26.0
+offset_right = 505.0
+offset_bottom = 66.0
+
+[node name="Label" type="Label" parent="Notificacion" unique_id=1045983926]
+layout_mode = 2
+text = "🔥 ¡INCENDIO!\\nRazón aquí"
+horizontal_alignment = 1
+
+[node name="PanelFin" type="PanelContainer" parent="." unique_id=240221351]
+visible = false
+custom_minimum_size = Vector2(360, 240)
+offset_left = 359.0
+offset_top = 222.0
+offset_right = 719.0
+offset_bottom = 462.0
+
+[node name="VBox" type="VBoxContainer" parent="PanelFin" unique_id=660924949]
+layout_mode = 2
+
+[node name="LabelTitulo" type="Label" parent="PanelFin/VBox" unique_id=1972021956]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="LabelPuntaje" type="Label" parent="PanelFin/VBox" unique_id=200536613]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Puntaje final: 0"
+horizontal_alignment = 1
+
+[node name="BotonReiniciar" type="Button" parent="PanelFin/VBox" unique_id=1703549936]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🔄 Jugar de nuevo"

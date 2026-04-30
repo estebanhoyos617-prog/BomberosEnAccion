@@ -3,7 +3,7 @@ extends Area2D
 enum Estado { NORMAL, EN_LLAMAS, DESTRUIDA }
 
 @export var textura_normal: Texture2D
-@export var textura_fuego: Texture2D  
+@export var textura_fuego: Texture2D
 @export var textura_destruida: Texture2D
 @export var velocidad_fuego: float = 10.0
 @export var radio_propagacion: float = 120.0
@@ -15,6 +15,7 @@ var intensidad: float = 0.0
 
 signal casa_destruida(posicion)
 signal estado_cambiado(nuevo_estado)
+signal fuego_apagado   # NUEVA: para que GameManager sume puntaje
 
 func _ready() -> void:
 	_actualizar_textura()
@@ -36,6 +37,7 @@ func apagar_fuego(cantidad: float) -> void:
 		if intensidad <= 0.0:
 			intensidad = 0.0
 			cambiar_estado(Estado.NORMAL)
+			emit_signal("fuego_apagado")  # avisa al GameManager
 
 func cambiar_estado(nuevo_estado: Estado) -> void:
 	estado = nuevo_estado
