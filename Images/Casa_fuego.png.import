@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5laou87lfueb"
-path="res://.godot/imported/casa_destruida_64x64.png-886408ecdf9ba1f3450d6e5c950eb574.ctex"
+uid="uid://knpjpcntsv6c"
+path="res://.godot/imported/Casa_fuego.png-df516e59825874fb6892054f44d7d883.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/casa_destruida_64x64.png"
-dest_files=["res://.godot/imported/casa_destruida_64x64.png-886408ecdf9ba1f3450d6e5c950eb574.ctex"]
+source_file="res://Images/Casa_fuego.png"
+dest_files=["res://.godot/imported/Casa_fuego.png-df516e59825874fb6892054f44d7d883.ctex"]
 
 [params]
 

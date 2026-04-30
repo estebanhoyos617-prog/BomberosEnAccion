@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdh3qrtdjdev7"
-path="res://.godot/imported/casa_fuego_64x64.png-79d1b7b36a0dc71de98400963cb00447.ctex"
+uid="uid://dwu6ueg6esc2d"
+path="res://.godot/imported/Fondo_ciudad.png-6cd9579933824b6142be5b701f44daa8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/casa_fuego_64x64.png"
-dest_files=["res://.godot/imported/casa_fuego_64x64.png-79d1b7b36a0dc71de98400963cb00447.ctex"]
+source_file="res://Images/Fondo_ciudad.png"
+dest_files=["res://.godot/imported/Fondo_ciudad.png-6cd9579933824b6142be5b701f44daa8.ctex"]
 
 [params]
 

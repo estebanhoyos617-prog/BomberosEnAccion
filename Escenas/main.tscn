@@ -13,11 +13,21 @@ script = ExtResource("1_6lbni")
 [node name="Mapa" parent="." unique_id=1511465982 instance=ExtResource("2_0kh0y")]
 
 [node name="Camion" parent="." unique_id=1925007731 instance=ExtResource("2_vt1rs")]
-position = Vector2(23, -32)
+position = Vector2(-67, 394)
 
 [node name="Casas" type="Node" parent="." unique_id=1269907076]
 
 [node name="Casa" parent="Casas" unique_id=1593599540 instance=ExtResource("4_7xwpo")]
+position = Vector2(554, 526)
 
-[node name="Casa2" parent="Casas" unique_id=1433984506 instance=ExtResource("4_7xwpo")]
-position = Vector2(485, 39)
+[node name="Casa2" parent="Casas" unique_id=949048153 instance=ExtResource("4_7xwpo")]
+position = Vector2(690, 526)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1238929588]
+
+[node name="BarraVida" type="ProgressBar" parent="HUD" unique_id=1758112729]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 50.0
+value = 100.0

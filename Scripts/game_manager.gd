@@ -13,24 +13,22 @@ var juego_activo: bool = true
 var tiempo_spawn_fuego: float = 5.0
 var timer_spawn: float = 0.0
 
-# Referencia al jugador
-@onready var jugador = $Camion
+# Referencia al jugador y HUD
+@onready var jugador = $"../Camion"
+@onready var hud = $"../HUD"
 
 func _ready() -> void:
 	print("GameManager iniciado")
-	print("Casas encontradas: ", casas.size())
 	_registrar_casas()
+	print("Casas encontradas: ", casas.size())
 
 func _process(delta: float) -> void:
 	if not juego_activo:
 		return
-	
-	# Temporizador para iniciar fuegos aleatorios
 	timer_spawn += delta
 	if timer_spawn >= tiempo_spawn_fuego:
 		timer_spawn = 0.0
 		_iniciar_fuego_aleatorio()
-		# Dificultad progresiva: cada fuego el intervalo baja
 		tiempo_spawn_fuego = max(2.0, tiempo_spawn_fuego - 0.2)
 
 func _registrar_casas() -> void:
@@ -38,30 +36,26 @@ func _registrar_casas() -> void:
 		casas.append(nodo)
 		nodo.casa_destruida.connect(_on_casa_destruida)
 		print("Casa registrada: ", nodo.name)
-	
 
 func _iniciar_fuego_aleatorio() -> void:
 	print("Intentando iniciar fuego...")
 	if casas.is_empty():
 		print("ERROR: No hay casas registradas!")
 		return
-	# ... resto del código
-	
-	# Filtrar solo casas normales (sin fuego)
 	var casas_normales: Array = []
 	for casa in casas:
 		if casa.estado == casa.Estado.NORMAL:
 			casas_normales.append(casa)
-	
 	if casas_normales.is_empty():
 		return
-	
-	# Elegir una casa aleatoria y prenderle fuego
 	var indice: int = randi() % casas_normales.size()
 	casas_normales[indice].iniciar_fuego()
 
 func _on_casa_destruida(posicion: Vector2) -> void:
 	casas_destruidas += 1
+	var dano: float = 100.0 / casas.size()
+	hud.reducir_vida(dano)
+	print("Casa destruida! Vida restante: ", hud.vida_actual)
 	if casas_destruidas >= max_casas_destruidas:
 		_game_over()
 
