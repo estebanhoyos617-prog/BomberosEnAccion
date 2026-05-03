@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://lts43j6n67so"]
 
 [ext_resource type="Script" uid="uid://ce1mfabmf6lvq" path="res://Scripts/casa.gd" id="1_rixwx"]
-[ext_resource type="Texture2D" uid="uid://c2y2dxsbisa3c" path="res://Images/casa_normal_64x64 (1).png" id="2_rixwx"]
-[ext_resource type="Texture2D" uid="uid://crccbebh1rqtn" path="res://Images/casa_fuego_64x64 (1).png" id="3_nvjj1"]
-[ext_resource type="Texture2D" uid="uid://dgls64lrmnw3e" path="res://Images/casa_destruida_64x64 (1).png" id="4_gg1cq"]
+[ext_resource type="Texture2D" uid="uid://c2y2dxsbisa3c" path="res://Images/casa_normal_64x64.png" id="2_rixwx"]
+[ext_resource type="Texture2D" uid="uid://crccbebh1rqtn" path="res://Images/casa_fuego_64x64.png" id="3_nvjj1"]
+[ext_resource type="Texture2D" uid="uid://dgls64lrmnw3e" path="res://Images/casa_destruida_64x64.png" id="4_gg1cq"]
+[ext_resource type="Shader" uid="uid://dmbpoasx44odr" path="res://Shaders/casa_fuego.gdshader" id="5_gg1cq"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jm1j0"]
-load_path = "res://.godot/imported/casa_normal_64x64 (1).png-1c12dbf605b8df2df501f21473c552c3.ctex"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfvyc"]
+shader = ExtResource("5_gg1cq")
+shader_parameter/time_scale = 2.5
+shader_parameter/intensity = 2.000000095
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rixwx"]
 size = Vector2(61, 59)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nvjj1"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [node name="Casa" type="Area2D" unique_id=1593599540 groups=["casas"]]
 position = Vector2(56, 47)
@@ -20,16 +27,23 @@ textura_fuego = ExtResource("3_nvjj1")
 textura_destruida = ExtResource("4_gg1cq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1081042092]
+material = SubResource("ShaderMaterial_vfvyc")
 use_parent_material = true
 position = Vector2(-15, -6)
 scale = Vector2(0.5, 0.5)
-texture = SubResource("CompressedTexture2D_jm1j0")
+texture = ExtResource("3_nvjj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611779700]
 position = Vector2(-14.5, -6.5)
 shape = SubResource("RectangleShape2D_rixwx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2024908121]
+
+[node name="FuegoParticles" type="GPUParticles2D" parent="." unique_id=1801362440]
+amount = 25
+lifetime = 0.8
+explosiveness = 0.4
+process_material = SubResource("ParticleProcessMaterial_nvjj1")
 
 [connection signal="casa_destruida" from="." to="." method="_on_casa_destruida"]
 [connection signal="estado_cambiado" from="." to="." method="_on_estado_cambiado"]
