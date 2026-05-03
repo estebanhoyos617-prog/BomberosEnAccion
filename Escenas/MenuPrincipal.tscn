@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://biwpy2a5h7fa"]
+
+[ext_resource type="Script" uid="uid://dvs3u0bdqtvcn" path="res://Scripts/menu_principal.gd" id="1_20qv4"]
+[ext_resource type="Shader" uid="uid://dih5g3d5hw25y" path="res://Shaders/fondo_llamas.gdshader" id="2_shwl5"]
+[ext_resource type="Shader" uid="uid://dnavyq5qbdh71" path="res://Shaders/titulo_glow.gdshader" id="3_gdyll"]
+[ext_resource type="Shader" uid="uid://crljwhifchtwn" path="res://Shaders/crt_scanlines.gdshader" id="4_0qwxx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shwl5"]
+shader = ExtResource("2_shwl5")
+shader_parameter/speed = 1.5
+shader_parameter/intensity = 0.450000021375
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dxjv"]
+shader = ExtResource("4_0qwxx")
+shader_parameter/scanline_density = 300.0
+shader_parameter/scanline_strength = 0.25
+shader_parameter/vignette_strength = 0.45
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmlkd"]
+shader = ExtResource("3_gdyll")
+shader_parameter/glow_color = Color(1, 0.4, 0, 1)
+shader_parameter/glow_speed = 2.0
+shader_parameter/glow_min = 0.6
+shader_parameter/glow_max = 1.4
+
+[node name="MenuPrincipal" type="CanvasLayer" unique_id=423841599]
+script = ExtResource("1_20qv4")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=2034492616]
+material = SubResource("ShaderMaterial_shwl5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.039215688, 0, 1)
+
+[node name="Chispas" type="Node2D" parent="." unique_id=1266366268]
+
+[node name="CRTOverlay" type="ColorRect" parent="." unique_id=1760598304]
+visible = false
+material = SubResource("ShaderMaterial_1dxjv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PanelFondo" type="Control" parent="." unique_id=989206967]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PanelFondo" unique_id=1197491105]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 310.0
+offset_top = 169.0
+offset_right = 793.0
+offset_bottom = 227.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LabelTitulo" type="Label" parent="PanelFondo/VBox" unique_id=1916531273]
+material = SubResource("ShaderMaterial_vmlkd")
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "🔥 Bomberos en Acción"
+horizontal_alignment = 1
+
+[node name="LabelSubtitulo" type="Label" parent="PanelFondo/VBox" unique_id=326925336]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.53333336, 1)
+theme_override_font_sizes/font_size = 18
+text = "¡Salva la ciudad del fuego!"
+horizontal_alignment = 1
+
+[node name="Separador" type="Control" parent="PanelFondo/VBox" unique_id=878601299]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="BtnJugar" type="Button" parent="PanelFondo/VBox" unique_id=1861951145]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "▶  JUGAR"
+
+[node name="BtnComoJugar" type="Button" parent="PanelFondo/VBox" unique_id=204950156]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "❓  CÓMO JUGAR"
+
+[node name="BtnSalir" type="Button" parent="PanelFondo/VBox" unique_id=1622391635]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "✖  SALIR"
+
+[node name="PanelComoJugar" type="PanelContainer" parent="." unique_id=777817502]
+visible = false
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PanelComoJugar" unique_id=1409844990]
+layout_mode = 2
+
+[node name="LabelTitulo2" type="Label" parent="PanelComoJugar/VBox" unique_id=1339848929]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "❓ Cómo Jugar"
+horizontal_alignment = 1
+
+[node name="LabelInstrucciones" type="Label" parent="PanelComoJugar/VBox" unique_id=201319026]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "🚒 Moverte: teclas WASD o flechas
+
+🔥 Apagar fuego: acercate a una casa
+   en llamas y presioná ESPACIO
+
+⚠️ La barra de CAOS sube sola con
+   el tiempo y más rápido si hay
+   casas ardiendo
+
+💀 Si el caos llega al 100% → GAME OVER
+
+🏆 Sobrevive 5 minutos → ¡VICTORIA!"
+autowrap_mode = 2
+
+[node name="BtnCerrar" type="Button" parent="PanelComoJugar/VBox" unique_id=760665685]
+layout_mode = 2
+text = "✔ Entendido
+"
