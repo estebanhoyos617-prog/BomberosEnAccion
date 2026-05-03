@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crccbebh1rqtn"
-path="res://.godot/imported/casa_fuego_64x64 (1).png-e56cda7dcdc8bb9dc43112c3c3ed18b6.ctex"
+path="res://.godot/imported/casa_fuego_64x64.png-79d1b7b36a0dc71de98400963cb00447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/casa_fuego_64x64 (1).png"
-dest_files=["res://.godot/imported/casa_fuego_64x64 (1).png-e56cda7dcdc8bb9dc43112c3c3ed18b6.ctex"]
+source_file="res://Images/casa_fuego_64x64.png"
+dest_files=["res://.godot/imported/casa_fuego_64x64.png-79d1b7b36a0dc71de98400963cb00447.ctex"]
 
 [params]
 

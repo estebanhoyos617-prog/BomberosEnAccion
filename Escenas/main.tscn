@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bfr0u4pv57e22" path="res://Escenas/HUD.tscn" id="5_2ia52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ia52"]
-size = Vector2(317, 248)
+size = Vector2(310, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2ilj"]
-size = Vector2(92.5, 78)
+size = Vector2(74.5, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktoa8"]
 size = Vector2(355, 243)
@@ -83,11 +83,11 @@ position = Vector2(404.99997, 110)
 [node name="Muros" type="StaticBody2D" parent="." unique_id=1842350609]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Muros" unique_id=1306643861]
-position = Vector2(619.5, 297)
+position = Vector2(616, 293)
 shape = SubResource("RectangleShape2D_2ia52")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Muros" unique_id=630881182]
-position = Vector2(823.75, 211)
+position = Vector2(814.75, 207)
 shape = SubResource("RectangleShape2D_s2ilj")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Muros" unique_id=9143157]
