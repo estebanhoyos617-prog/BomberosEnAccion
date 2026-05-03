@@ -2,6 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://bq70jlke43mvi" path="res://Images/camion_64x128.png" id="1_gl8cg"]
 [ext_resource type="Script" uid="uid://be1byc8k6oprb" path="res://Scripts/camion.gd" id="1_jk3q3"]
+[ext_resource type="Shader" uid="uid://gkndl2upkg0s" path="res://Shaders/camion_efectos.gdshader" id="2_x8v1e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk3q3"]
+shader = ExtResource("2_x8v1e")
+shader_parameter/flash_intensity = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/rim_intensity = 0.0
+shader_parameter/rim_size = 3.0
+shader_parameter/rim_color = Color(1, 0.35, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gl8cg"]
 size = Vector2(36, 86)
@@ -13,6 +22,7 @@ radius = 67.18631
 script = ExtResource("1_jk3q3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=471150561]
+material = SubResource("ShaderMaterial_jk3q3")
 position = Vector2(220, 138)
 scale = Vector2(0.47033423, 0.4971592)
 texture = ExtResource("1_gl8cg")
