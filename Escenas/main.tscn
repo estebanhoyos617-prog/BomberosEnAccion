@@ -6,6 +6,42 @@
 [ext_resource type="PackedScene" uid="uid://lts43j6n67so" path="res://Escenas/casa.tscn" id="4_7xwpo"]
 [ext_resource type="PackedScene" uid="uid://bfr0u4pv57e22" path="res://Escenas/HUD.tscn" id="5_2ia52"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ia52"]
+size = Vector2(317, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2ilj"]
+size = Vector2(92.5, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktoa8"]
+size = Vector2(355, 243)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1md0r"]
+size = Vector2(136.5, 210)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3qho"]
+size = Vector2(69, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1m0k"]
+size = Vector2(131, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyv6x"]
+size = Vector2(89, 85.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crgrh"]
+size = Vector2(725, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8mww"]
+size = Vector2(221, 228)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4rd6"]
+size = Vector2(515.5, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ndum"]
+size = Vector2(200, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7rjx"]
+size = Vector2(64, 101)
+
 [node name="Main" type="Node2D" unique_id=116071391]
 
 [node name="GameManager" type="Node" parent="." unique_id=659966762]
@@ -33,10 +69,63 @@ position = Vector2(1049, 530)
 [node name="Casa5" parent="Casas" unique_id=31923226 instance=ExtResource("4_7xwpo")]
 position = Vector2(376.99997, 480)
 
-[node name="Casa6" parent="Casas" unique_id=165554705 instance=ExtResource("4_7xwpo")]
-position = Vector2(1078, 320)
-
 [node name="Casa7" parent="Casas" unique_id=1131788309 instance=ExtResource("4_7xwpo")]
 position = Vector2(404.99997, 276)
 
+[node name="Casa8" parent="Casas" unique_id=1403389804 instance=ExtResource("4_7xwpo")]
+position = Vector2(233.99998, 280)
+
+[node name="Casa9" parent="Casas" unique_id=1200798967 instance=ExtResource("4_7xwpo")]
+position = Vector2(404.99997, 110)
+
 [node name="HUD" parent="." unique_id=581557207 instance=ExtResource("5_2ia52")]
+
+[node name="Muros" type="StaticBody2D" parent="." unique_id=1842350609]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Muros" unique_id=1306643861]
+position = Vector2(619.5, 297)
+shape = SubResource("RectangleShape2D_2ia52")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Muros" unique_id=630881182]
+position = Vector2(823.75, 211)
+shape = SubResource("RectangleShape2D_s2ilj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Muros" unique_id=9143157]
+position = Vector2(225.5, 124.5)
+shape = SubResource("RectangleShape2D_ktoa8")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Muros" unique_id=1354132271]
+position = Vector2(116.75, 317)
+shape = SubResource("RectangleShape2D_1md0r")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Muros" unique_id=1160759807]
+position = Vector2(368.5, 180)
+shape = SubResource("RectangleShape2D_n3qho")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Muros" unique_id=423487303]
+position = Vector2(249.5, 400)
+shape = SubResource("RectangleShape2D_b1m0k")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Muros" unique_id=985922217]
+position = Vector2(268.5, 466.25)
+shape = SubResource("RectangleShape2D_nyv6x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Muros" unique_id=293019367]
+position = Vector2(779.5, 590)
+shape = SubResource("RectangleShape2D_crgrh")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Muros" unique_id=1668159074]
+position = Vector2(1038.5, 114)
+shape = SubResource("RectangleShape2D_l8mww")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Muros" unique_id=1786606393]
+position = Vector2(667, 37)
+shape = SubResource("RectangleShape2D_i4rd6")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Muros" unique_id=660659322]
+position = Vector2(1042, 385)
+shape = SubResource("RectangleShape2D_7ndum")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Muros" unique_id=757971534]
+position = Vector2(1113, 507.5)
+shape = SubResource("RectangleShape2D_c7rjx")
