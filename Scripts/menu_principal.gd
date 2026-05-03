@@ -68,6 +68,7 @@ func _on_jugar() -> void:
 	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Escenas/main.tscn"))
 
 func _on_como_jugar() -> void:
+	panel_menu.visible = false
 	panel_como_jugar.visible = true
 	panel_como_jugar.modulate.a = 0.0
 	var tween = create_tween()
@@ -75,6 +76,7 @@ func _on_como_jugar() -> void:
 
 func _on_cerrar_ayuda() -> void:
 	panel_como_jugar.visible = false
+	panel_menu.visible = true
 
 func _on_salir() -> void:
 	get_tree().quit()
