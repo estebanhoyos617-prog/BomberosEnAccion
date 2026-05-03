@@ -15,6 +15,10 @@ run/main_scene="uid://c07l2v7511x3h"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioManager="*uid://dhvnpfr2j3hhs"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ai_autonomous_agent/plugin.cfg")

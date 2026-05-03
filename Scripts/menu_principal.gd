@@ -19,6 +19,13 @@ func _ready() -> void:
 	btn_cerrar_ayuda.pressed.connect(_on_cerrar_ayuda)
 	panel_como_jugar.visible = false
 
+	# Conectar sonido a todos los botones
+	for btn in [btn_jugar, btn_como_jugar, btn_salir, btn_cerrar_ayuda]:
+		btn.pressed.connect(func(): AudioManager.play_efecto("click_boton.ogg", -5.0))
+
+	# Música del menú
+	AudioManager.play_musica("musica_menu.ogg", -15.0)
+
 	for i in max_chispas:
 		_crear_chispa(true)
 
@@ -31,8 +38,9 @@ func _process(delta: float) -> void:
 
 func _crear_chispa(aleatorio_y: bool = false) -> void:
 	var chispa = {
-		"pos": Vector2(randf() * screen_size.x, randf() * screen_size.y if aleatorio_y else screen_size.y + 10.0),
-		"vel": Vector2(randf_range(-20.0, 20.0), randf_range(-80.0, -160.0)),
+		"pos": Vector2(randf() * screen_size.x,
+					   randf() * screen_size.y if aleatorio_y else screen_size.y - 10.0),
+		"vel": Vector2(randf_range(-20.0, 20.0), randf_range(-160.0, -80.0)),
 		"vida": 0.0,
 		"vida_max": randf_range(1.5, 3.5),
 		"size": randf_range(2.0, 5.0),
@@ -63,6 +71,7 @@ func _actualizar_chispas(delta: float) -> void:
 		_crear_chispa()
 
 func _on_jugar() -> void:
+	AudioManager.stop_musica()
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.4)
 	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Escenas/main.tscn"))

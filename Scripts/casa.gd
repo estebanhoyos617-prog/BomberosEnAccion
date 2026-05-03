@@ -15,7 +15,7 @@ var intensidad: float = 0.0
 
 signal casa_destruida(posicion)
 signal estado_cambiado(nuevo_estado)
-signal fuego_apagado   # NUEVA: para que GameManager sume puntaje
+signal fuego_apagado
 
 func _ready() -> void:
 	_actualizar_textura()
@@ -31,20 +31,33 @@ func iniciar_fuego() -> void:
 		cambiar_estado(Estado.EN_LLAMAS)
 		intensidad = 0.0
 
+var _timer_agua: float = 0.0
+
 func apagar_fuego(cantidad: float) -> void:
 	if estado == Estado.EN_LLAMAS:
 		intensidad -= cantidad
 		if intensidad <= 0.0:
 			intensidad = 0.0
+			_timer_agua = 0.0
 			cambiar_estado(Estado.NORMAL)
-			emit_signal("fuego_apagado")  # avisa al GameManager
+			emit_signal("fuego_apagado")
+
+func resetear_agua() -> void:
+	_timer_agua = 0.0
 
 func cambiar_estado(nuevo_estado: Estado) -> void:
 	estado = nuevo_estado
 	_actualizar_textura()
 	emit_signal("estado_cambiado", nuevo_estado)
-	if nuevo_estado == Estado.DESTRUIDA:
-		emit_signal("casa_destruida", global_position)
+	match nuevo_estado:
+		Estado.EN_LLAMAS:
+			AudioManager.play_loop("fuego_loop.ogg", -8.0)
+		Estado.NORMAL:
+			AudioManager.stop_loop("fuego_loop.ogg")
+		Estado.DESTRUIDA:
+			AudioManager.stop_loop("fuego_loop.ogg")
+			AudioManager.play_efecto("casa_destruida.ogg")
+			emit_signal("casa_destruida", global_position)
 
 func _actualizar_textura() -> void:
 	match estado:

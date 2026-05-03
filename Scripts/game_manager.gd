@@ -5,9 +5,9 @@ var casas: Array = []
 
 # ── Barra de Caos ──────────────────────────────────────────────────────────
 var caos: float = 0.0                     # 0..100
-var caos_por_segundo_base: float = 1.5    # sube solo con el tiempo
-var caos_por_casa_ardiendo: float = 3.0   # extra por cada casa en llamas
-var caos_por_destruccion: float = 15.0    # golpe al destruirse una casa
+var caos_por_segundo_base: float = 0.5      # antes 1.5 — sube más lento solo
+var caos_por_casa_ardiendo: float = 1.5     # antes 3.0 — menos presión por casa
+var caos_por_destruccion: float = 10.0   # golpe al destruirse una casa
 
 # ── Supervivencia (condición de victoria) ──────────────────────────────────
 var tiempo_objetivo: float = 120.0        # segundos para ganar (2 min)
@@ -114,6 +114,8 @@ func _on_fuego_apagado() -> void:
 
 # ── Caos ───────────────────────────────────────────────────────────────────
 func _modificar_caos(delta_caos: float) -> void:
+	if not juego_activo:
+		return
 	caos = clamp(caos + delta_caos, 0.0, 100.0)
 	emit_signal("caos_actualizado", caos)
 	if caos >= 100.0:

@@ -6,7 +6,6 @@ extends CharacterBody2D
 var casa_cercana: Area2D = null
 
 func _ready() -> void:
-	# Conectar señales del Area2D hijo (lo agregamos ahora)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -18,8 +17,8 @@ func _physics_process(delta: float) -> void:
 	if direction.length_squared() > 0:
 		var target_rotation: float = direction.angle()
 		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, target_rotation + (PI / 2), 0.1)
-	
-	# Apagar fuego si está cerca y presiona ESPACIO
+
+	# Apagar fuego
 	if Input.is_action_pressed("ui_accept") and casa_cercana != null:
 		if casa_cercana.estado == casa_cercana.Estado.EN_LLAMAS:
 			casa_cercana.apagar_fuego(potencia_apagado * delta)
