@@ -1,27 +1,32 @@
 shader_type canvas_item;
-render_mode unshaded;
+render_mode unshaded, blend_mix;
 
-uniform float time_scale : hint_range(0.5, 5.0) = 2.5;
+uniform float flame_speed : hint_range(0.5, 6.0) = 3.0;
 uniform float intensity : hint_range(0.0, 3.0) = 1.8;
+uniform float flicker : hint_range(0.0, 1.0) = 0.6;
 
 void fragment() {
     vec2 uv = UV;
-    float t = TIME * time_scale;
+    float time = TIME * flame_speed;
     
-    // Simple flame movement using sine waves
-    float flame = sin(uv.y * 8.0 - t * 3.0) * 0.5 + 0.5;
-    flame *= sin(uv.x * 12.0 + t * 2.0) * 0.3 + 0.7;
+    // Movimiento de llamas con varias capas
+    float wave1 = sin(uv.y * 10.0 - time * 4.0) * 0.5 + 0.5;
+    float wave2 = sin(uv.x * 15.0 + time * 3.0) * 0.3;
+    float wave3 = sin(uv.y * 6.0 - time * 2.5 + uv.x * 8.0) * 0.4;
     
-    // Mask - more fire at top
-    float mask = 1.0 - uv.y;
-    flame *= mask * intensity;
+    float fire = (wave1 + wave2 + wave3) * 0.6;
     
-    // Color
-    vec3 fire_color = mix(vec3(1.0, 0.3, 0.0), vec3(1.0, 0.85, 0.2), flame);
+    // Máscara más fuerte en la parte superior de la casa
+    float mask = pow(1.0 - uv.y, 1.8);
+    fire *= mask * intensity;
     
-    // Add to base texture
-    vec3 base = texture(TEXTURE, uv).rgb;
-    COLOR.rgb = mix(base, fire_color, flame * 0.75);
-    COLOR.rgb += fire_color * flame * 1.5; // glow
+    // Color del fuego
+    vec3 base_color = texture(TEXTURE, uv).rgb;
+    vec3 flame_color = mix(vec3(1.0, 0.25, 0.0), vec3(1.0, 0.85, 0.1), fire);
+    
+    // Mezcla con la textura original + glow
+    COLOR.rgb = mix(base_color, flame_color, fire * 0.85);
+    COLOR.rgb += flame_color * fire * 1.8;  // brillo
+    
     COLOR.a = texture(TEXTURE, uv).a;
 }

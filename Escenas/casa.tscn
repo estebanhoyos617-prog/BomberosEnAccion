@@ -8,15 +8,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfvyc"]
 shader = ExtResource("5_gg1cq")
-shader_parameter/time_scale = 2.5
-shader_parameter/intensity = 2.000000095
+shader_parameter/flame_speed = 6.0
+shader_parameter/intensity = 3.0
+shader_parameter/flicker = 0.6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rixwx"]
 size = Vector2(61, 59)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nvjj1"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
 
 [node name="Casa" type="Area2D" unique_id=1593599540 groups=["casas"]]
 position = Vector2(56, 47)
@@ -38,12 +35,6 @@ position = Vector2(-14.5, -6.5)
 shape = SubResource("RectangleShape2D_rixwx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2024908121]
-
-[node name="FuegoParticles" type="GPUParticles2D" parent="." unique_id=1801362440]
-amount = 25
-lifetime = 0.8
-explosiveness = 0.4
-process_material = SubResource("ParticleProcessMaterial_nvjj1")
 
 [connection signal="casa_destruida" from="." to="." method="_on_casa_destruida"]
 [connection signal="estado_cambiado" from="." to="." method="_on_estado_cambiado"]
